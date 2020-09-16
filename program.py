@@ -3,6 +3,8 @@
 
 from random import choice
 
+print("")
+
 def get_week_report_bot_response(user_response):
 
     bot_response_positive = ["Great to hear! Hope things stay this good! :)", "Aye! That's what I like to hear!",
@@ -25,22 +27,19 @@ def get_week_report_bot_response(user_response):
     else:
         return choice (bot_response_neutral)
 
-user_response = input()
-bot_response = get_week_report_bot_response(user_response)
-print(bot_response)
+print("Hey! How was your week? Feel free to go into as much detail as you would like.")
+print("You can run this bot for as many times as you would like. When you are done, simply type 'stop'")
+print("")
 
-    
+user_response = ""
 
+while True:
+    print("")
+    user_response = input("Tell me about your week here: ")
 
+    if user_response == "stop" or user_response == "Stop":
+        print("Goodbye")
+        break
 
-
-
-
-# key_words = ("screen", "power", "wifi")
-
-# user_input = input("Type: ")
-
-# if any(i in key_words for i in user_input.split()):
-#     print("you should do this...")
-
-
+    bot_response = get_week_report_bot_response(user_response)
+    print(bot_response)
