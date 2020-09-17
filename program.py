@@ -15,14 +15,24 @@ def get_week_report_bot_response(user_response):
   
     bot_response_neutral = ["Sounds Interesting", "Thanks for sharing!", "Interesting..."]
 
-    positive_key_words = ["great", "good", "awesome", "amazing", "nice", "fantastic", "lit", "dope", "wasn't bad", "wonderful"]
-    negative_key_words = ["bad", "horrible", "okay", "boring", "crappy", "depressing", "wasn't great", "wasn't good"]
+    positive_key_words = ["great", "good", "awesome", "amazing", "nice", "fantastic", "lit", "dope", "wonderful"]
+    positive_key_phrases = ["wasnt bad"]
+    negative_key_words = ["bad", "horrible", "okay", "boring", "crappy", "depressing", "wasn't great"]
+    negative_key_phrases = ["wasnt good"]
 
-    user_response = user_response.replace(".", " ").casefold()
+    user_word_response = user_response.replace(".", " ").casefold()
+    user_phrase_response = user_response.replace("'", "").casefold()
 
-    if any(i in positive_key_words for i in user_response.split()):
+    if any(i in user_phrase_response for i in positive_key_phrases):
         return choice (bot_response_positive)
-    elif any(i in negative_key_words for i in user_response.split()):
+    elif any(i in user_phrase_response for i in negative_key_phrases):
+        return choice (bot_response_negative)
+    else:
+        None
+
+    if any(i in positive_key_words for i in user_word_response.split()):
+        return choice (bot_response_positive)
+    elif any(i in negative_key_words for i in user_word_response.split()):
         return choice (bot_response_negative)
     else:
         return choice (bot_response_neutral)
