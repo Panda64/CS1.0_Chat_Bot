@@ -15,10 +15,10 @@ def get_week_report_bot_response(user_response):
   
     bot_response_neutral = ["Sounds Interesting", "Thanks for sharing!", "Interesting..."]
 
-    positive_key_words = ["great", "good", "awesome", "amazing", "nice", "fantastic", "lit", "dope", "wasn't bad"]
+    positive_key_words = ["great", "good", "awesome", "amazing", "nice", "fantastic", "lit", "dope", "wasn't bad", "wonderful"]
     negative_key_words = ["bad", "horrible", "okay", "boring", "crappy", "depressing", "wasn't great", "wasn't good"]
 
-    user_response = user_response.casefold()
+    user_response = user_response.replace(".", " ").casefold()
 
     if any(i in positive_key_words for i in user_response.split()):
         return choice (bot_response_positive)
